@@ -9,7 +9,7 @@ const About = () => {
         </h2>
     <div className="flex justify-center mb-10">
       <img
-        src="https://lh6.googleusercontent.com/SQ5CTHUPKFcTJf3YloIuUhPJhXP92ayl11AsF-krstqRyCIoXLmFKp4RFPhO2FGTcEil5ZnXv_O7Q9GQ2_qD1JO4bYLPy_WxbFhCeSOJFqdSk7q6ZhuLazLpl2yqvkgF9A=w1280"
+        src="/gwah.jpg"
         alt="Profile"
         className="w-48 md:w-64 rounded-xl shadow-xl"
       />
