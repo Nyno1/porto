@@ -9,37 +9,37 @@ const techStacks = [
   {
     name: "React",
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-    color: "#22d3ee",
+    color: "#ffffff",
   },
   {
     name: "Laravel",
-    logo: "https://static-00.iconduck.com/assets.00/laravel-icon-497x512-uwybstke.png",
-    color: "#ef4444",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg",
+    color: "#ffffff",
   },
   {
     name: "PHP",
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
-    color: "#6366f1",
+    color: "#ffffff",
   },
   {
     name: "CSS",
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
-    color: "#3b82f6",
+    color: "#ffffff",
   },
   {
     name: "JavaScript",
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
-    color: "#fbbf24",
+    color: "#ffffff",
   },
   {
     name: "TypeScript",
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
-    color: "#0ea5e9",
+    color: "#ffffff",
   },
   {
     name: "SQL",
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
-    color: "#3b82f6",
+    color: "#ffffff",
   },
 ];
 
