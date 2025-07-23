@@ -10,7 +10,7 @@ const githubRepos = [
   {
     title: "Perpustakaan",
     description: "Website manajemen perpustakaan digital.",
-    image: "",
+    image: "4.png",
     link: "https://github.com/Nyno1/perpustakaan",
   },
   {
