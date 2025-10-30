@@ -2,28 +2,28 @@ import React from "react";
 
 const githubRepos = [
   {
-    title: "TechXperience",
-    description: "Ngerjain soal STS produktif RPL.",
-    image: "/1.png",
-    link: "https://github.com/Nyno1/techxperience",
+    title: "Website Katakans",
+    description: "Website untuk komunitas katakans.",
+    image: "1.png",
+    link: "https://github.com/Alezonythh/katakans_Web",
   },
   {
-    title: "Perpustakaan",
-    description: "Website manajemen perpustakaan digital.",
+    title: "website sertifikat digital",
+    description: "Website untuk mencari atau melihat sertifikat digital sekolah pesat.",
     image: "4.png",
-    link: "https://github.com/Nyno1/perpustakaan",
+    link: "https://github.com/Nyno1/project_3bulan",
   },
   {
-    title: "TodoList",
-    description: "Aplikasi todo list untuk mengatur tugas harian.",
-    image: "/3.jpg",
-    link: "https://github.com/Nyno1/todolist",
+    title: "Website hotel",
+    description: "Website untuk memesan hotel.",
+    image: "3.png",
+    link: "https://github.com/Nyno1/hotel-latihan-bnsp",
   },
   {
-    title: "Vidio clone",
-    description: "Aplikasi vidio clone.",
-    image: "/2.jpg",
-    link: "https://github.com/Nyno1/vidio",
+    title: "website beasiswa",
+    description: "Website untuk menginput IPK mahasiswa untuk mendapatkan beasiswa.",
+    image: "2.png",
+    link: "https://github.com/Nyno1/beasiswa-latihan-bnsp",
   },
 ];
 

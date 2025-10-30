@@ -1,6 +1,6 @@
 // components/FooterSosial.tsx
 import React from 'react';
-import { FaTwitch, FaTwitter, FaInstagram, FaGithub } from 'react-icons/fa';
+import { FaTwitch, FaTwitter, FaInstagram, FaGithub, FaLinkedin } from 'react-icons/fa';
 
 interface SocialLink {
   name: string;
@@ -10,7 +10,7 @@ interface SocialLink {
 
 const Footer: React.FC = () => {
   const socialLinks: SocialLink[] = [
-    { name: 'Twitch', url: 'https://www.twitch.tv/nynx8', icon: <FaTwitch /> },
+    { name: 'LinkedIn', url: 'https://www.linkedin.com/in/nashat-akram-537146390/', icon: <FaLinkedin /> },
     { name: 'Twitter', url: 'https://x.com/nynxd19711', icon: <FaTwitter /> },
     { name: 'Instagram', url: 'https://www.instagram.com/__akramzz/', icon: <FaInstagram /> },
     { name: 'GitHub', url: 'https://github.com/Nyno1', icon: <FaGithub /> },

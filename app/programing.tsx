@@ -22,8 +22,8 @@ const techStacks = [
     color: "#ffffff",
   },
   {
-    name: "CSS",
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+    name: "Prisma",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg",
     color: "#ffffff",
   },
   {
