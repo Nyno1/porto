@@ -37,7 +37,7 @@ const About = () => {
         </h2>
 
         <p className="text-sm sm:text-base mt-6 mx-auto dark:text-neutral-200">
-          Bersekolah di SMK Informatika Pesat dengan jurusan Rekayasa Perangkat Lunak (RPL), saya fokus untuk menguasai berbagai aspek dalam pengembangan perangkat lunak.
+          Berpendidikan di SMK Informatika Pesat dengan jurusan Rekayasa Perangkat Lunak (RPL), saya fokus untuk menguasai berbagai aspek dalam pengembangan perangkat lunak.
           Di jurusan ini, saya belajar tentang pemrograman, analisis sistem, serta pengembangan aplikasi baik di desktop maupun mobile.
         </p>
       </div>
