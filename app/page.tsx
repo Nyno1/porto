@@ -30,14 +30,19 @@ export default function NavbarDemo() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <div>
+    <div className="bg-[#0A0A0A] min-h-screen">
       <Navbar>
         {/* Desktop Navigation */}
         <NavBody>
           <NavbarLogo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
-            <NavbarButton variant="primary">Github</NavbarButton>
+            <NavbarButton
+              variant="primary"
+              onClick={() => window.open("https://github.com/Nyno1", "_blank")}
+            >
+              GitHub
+            </NavbarButton>
           </div>
         </NavBody>
 
@@ -71,14 +76,14 @@ export default function NavbarDemo() {
                 variant="primary"
                 className="w-full"
               >
-                Github
+                GitHub
               </NavbarButton>
             </div>
           </MobileNavMenu>
         </MobileNav>
       </Navbar>
 
-      {/* Page Sections with IDs */}
+      {/* Page Sections */}
       <div id="home">
         <ShootingStarsAndStarsBackgroundDemo />
       </div>
@@ -94,9 +99,7 @@ export default function NavbarDemo() {
       <div id="sertfication">
         <Sertfication />
       </div>
-      <div>
-        <Footer />
-      </div>
+      <Footer />
     </div>
   );
 }
