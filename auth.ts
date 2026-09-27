@@ -1,10 +1,10 @@
-// auth.ts
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
+  secret: process.env.AUTH_SECRET,
   session: { strategy: "jwt" },
   pages: { signIn: "/login" },
   providers: [
@@ -32,14 +32,14 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     jwt({ token, user }) {
       if (user) {
         token.id = (user as { id: string }).id;
-        token.role = (user as { role: string }).role;
+        token.role = (user as { role: "USER" | "ADMIN" }).role;
       }
       return token;
     },
     session({ session, token }) {
       if (session.user) {
-        (session.user as typeof session.user & { id: string; role: string }).id = token.id as string;
-        (session.user as typeof session.user & { id: string; role: string }).role = token.role as string;
+        session.user.id = token.id as string;
+        session.user.role = token.role as "USER" | "ADMIN";
       }
       return session;
     },
