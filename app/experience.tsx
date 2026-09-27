@@ -5,7 +5,7 @@ const experiences = [
   {
     company: "SMK Informatika Pesat",
     role: "Siswa RPL (Rekayasa Perangkat Lunak)",
-    period: "2022 – Sekarang",
+    period: "2022 – 2026",
     type: "Education",
     achievements: [
       "Mempelajari pemrograman web, desktop, dan mobile secara intensif",
@@ -25,14 +25,25 @@ const experiences = [
     ],
   },
   {
-    company: "Latihan BNSP",
-    role: "Full-Stack Developer",
+    company: "Balai Besar Perpustakaan dan Literasi Pertanian",
+    role: "PKL – Web Developer Intern",
+    period: "2024 (3 Bulan)",
+    type: "Internship",
+    achievements: [
+      "Menjalani Praktik Kerja Lapangan selama 3 bulan di lingkungan instansi pemerintah",
+      "Terlibat dalam pengembangan dan pemeliharaan sistem informasi perpustakaan digital",
+      "Berkolaborasi dengan tim IT dalam membangun fitur berbasis web menggunakan PHP dan MySQL",
+    ],
+  },
+  {
+    company: "BNSP – Badan Nasional Sertifikasi Profesi",
+    role: "Junior Web Developer",
     period: "2023 – 2024",
     type: "Certification",
     achievements: [
-      "Mengerjakan 3 project lengkap: hotel booking, beasiswa, dan perpustakaan",
-      "Menerapkan CRUD penuh dengan validasi dan autentikasi user",
-      "Mempersiapkan diri untuk uji kompetensi nasional BNSP",
+      "Berhasil menerima sertifikat BNSP Junior Website Developer",
+      "Mengerjakan project Website Beasiswa Digital sebagai syarat uji kompetensi",
+      "Lulus uji kompetensi nasional dengan penilaian dari asesor bersertifikat BNSP",
     ],
   },
 ];
@@ -41,6 +52,7 @@ const typeColors: Record<string, string> = {
   Education: "bg-blue-500/10 text-blue-400 border-blue-500/20",
   Project: "bg-green-500/10 text-green-400 border-green-500/20",
   Certification: "bg-purple-500/10 text-purple-400 border-purple-500/20",
+  Internship: "bg-orange-500/10 text-orange-400 border-orange-500/20",
 };
 
 export default function Experience() {

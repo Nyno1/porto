@@ -2,9 +2,9 @@ import RotatingText from '@/components/ui/rotating-text'
 import React from 'react'
 
 const stats = [
-  { value: '3+', label: 'Tahun Belajar' },
-  { value: '10+', label: 'Project Selesai' },
-  { value: '15+', label: 'Bahasa Yang Dikuasai' },
+  { value: '3+', label: 'Academic year' },
+  { value: '10+', label: 'Project Completed' },
+  { value: '15+', label: 'Languages Mastered' },
 ]
 
 const About = () => {
@@ -28,7 +28,7 @@ const About = () => {
       <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left">
         <p className="text-blue-400 text-sm font-semibold tracking-widest uppercase mb-3">About Me</p>
         <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4 leading-tight">
-          I'm Nashat Akram
+          Nashat Akram
         </h2>
 
         <div className="text-base md:text-lg font-semibold text-[#CCCCCC] flex items-center justify-center md:justify-start gap-2 mb-6">
@@ -48,10 +48,13 @@ const About = () => {
         </div>
 
         <p className="text-[#888888] text-sm md:text-base leading-relaxed mb-4">
-          Berpendidikan di <span className="text-[#CCCCCC]">SMK Informatika Pesat</span> dengan jurusan{' '}
-          <span className="text-[#CCCCCC]">Rekayasa Perangkat Lunak (RPL)</span>. Saya fokus menguasai
-          berbagai aspek dalam pengembangan perangkat lunak — dari pemrograman, analisis sistem,
-          hingga pengembangan aplikasi desktop dan mobile.
+          Mahasiswa di <span className="text-[#CCCCCC]">Universitas Gunadarma</span> yang
+          memiliki minat besar pada pengembangan perangkat lunak, mencakup pemrograman,
+          analisis sistem, serta perancangan aplikasi desktop dan mobile. Di sela-sela
+          perkuliahan, saya konsisten membangun proyek pribadi maupun kolaboratif untuk
+          mengasah kemampuan teknis, memperluas pemahaman tentang arsitektur software
+          yang baik, dan mempersiapkan diri untuk berkarier sebagai Software Engineer
+          yang kompeten dan adaptif terhadap perkembangan teknologi.
         </p>
         <p className="text-[#888888] text-sm md:text-base leading-relaxed mb-10">
           Pendekatan saya: memahami masalah dulu sebelum menulis satu baris kode pun. Saya percaya
@@ -71,19 +74,6 @@ const About = () => {
             </div>
           ))}
         </div>
-
-        {/* CTA */}
-        <a
-          href="/cv.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#2A2A2A] text-white text-sm font-semibold rounded-md hover:border-white transition-all duration-300"
-        >
-          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
-            <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M8 12l4 4 4-4M12 3v13" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-          Download CV
-        </a>
       </div>
       </div>
     </section>

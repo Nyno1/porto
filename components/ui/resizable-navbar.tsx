@@ -1,295 +1,325 @@
 "use client";
-import { cn } from "@/lib/utils";
-import { IconMenu2, IconX } from "@tabler/icons-react";
+
 import {
-  motion,
-  AnimatePresence,
-  useScroll,
-  useMotionValueEvent,
-} from "motion/react";
+  useEffect,
+  useState,
+  type JSX,
+  type ReactNode,
+  type SVGProps,
+} from "react";
 
-import React, { useRef, useState } from "react";
+type IconProps = SVGProps<SVGSVGElement> & { size?: number };
 
-
-interface NavbarProps {
-  children: React.ReactNode;
-  className?: string;
+function iconBase({ size = 20, strokeWidth = 1.75, className, ...rest }: IconProps) {
+  return {
+    width: size,
+    height: size,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+    className,
+    ...rest,
+  };
 }
 
-interface NavBodyProps {
-  children: React.ReactNode;
-  className?: string;
-  visible?: boolean;
+const HomeIcon = (props: IconProps) => (
+  <svg {...iconBase(props)}>
+    <path d="M3 11.5 12 4l9 7.5" />
+    <path d="M5.5 10v9a1 1 0 0 0 1 1H10v-5.5a2 2 0 0 1 2-2v0a2 2 0 0 1 2 2V20h3.5a1 1 0 0 0 1-1v-9" />
+  </svg>
+);
+
+const UserIcon = (props: IconProps) => (
+  <svg {...iconBase(props)}>
+    <circle cx="12" cy="8" r="3.5" />
+    <path d="M4.5 20c1-3.5 4-5.5 7.5-5.5s6.5 2 7.5 5.5" />
+  </svg>
+);
+
+const ZapIcon = (props: IconProps) => (
+  <svg {...iconBase(props)}>
+    <path d="M12 3 4.5 13.5H11L9.5 21 19 9.5h-6.5L14 3z" />
+  </svg>
+);
+
+const FolderIcon = (props: IconProps) => (
+  <svg {...iconBase(props)}>
+    <path d="M3.5 6.5A1.5 1.5 0 0 1 5 5h4l2 2.5h8A1.5 1.5 0 0 1 20.5 9v8A1.5 1.5 0 0 1 19 18.5H5A1.5 1.5 0 0 1 3.5 17z" />
+  </svg>
+);
+
+const BriefcaseIcon = (props: IconProps) => (
+  <svg {...iconBase(props)}>
+    <rect x="3.5" y="7.5" width="17" height="11" rx="1.5" />
+    <path d="M8.5 7.5V6a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v1.5" />
+    <path d="M3.5 12.5h17" />
+  </svg>
+);
+
+const AwardIcon = (props: IconProps) => (
+  <svg {...iconBase(props)}>
+    <circle cx="12" cy="9" r="5.5" />
+    <path d="M9 13.5 7.5 21l4.5-2.5 4.5 2.5-1.5-7.5" />
+  </svg>
+);
+
+const MenuIcon = (props: IconProps) => (
+  <svg {...iconBase(props)}>
+    <path d="M4 7h16M4 12h16M4 17h16" />
+  </svg>
+);
+
+const XIcon = (props: IconProps) => (
+  <svg {...iconBase(props)}>
+    <path d="M6 6l12 12M18 6 6 18" />
+  </svg>
+);
+
+export interface NavItem {
+  name: string;
+  link: string;
 }
 
-interface NavItemsProps {
-  items: {
-    name: string;
-    link: string;
-  }[];
-  className?: string;
-  onItemClick?: () => void;
-}
-
-interface MobileNavProps {
-  children: React.ReactNode;
-  className?: string;
-  visible?: boolean;
-}
-
-interface MobileNavHeaderProps {
-  children: React.ReactNode;
-  className?: string;
-}
-
-interface MobileNavMenuProps {
-  children: React.ReactNode;
-  className?: string;
-  isOpen: boolean;
-  onClose: () => void;
-}
-
-export const Navbar = ({ children, className }: NavbarProps) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollY } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-  const [visible, setVisible] = useState<boolean>(false);
-
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    if (latest > 100) {
-      setVisible(true);
-    } else {
-      setVisible(false);
-    }
-  });
-
-  return (
-    <motion.div
-      ref={ref}
-      // IMPORTANT: Change this to class of `fixed` if you want the navbar to be fixed
-      className={cn("sticky inset-x-0 top-4 z-40 w-full", className)}
-    >
-      {React.Children.map(children, (child) =>
-        React.isValidElement(child)
-          ? React.cloneElement(
-              child as React.ReactElement<{ visible?: boolean }>,
-              { visible },
-            )
-          : child,
-      )}
-    </motion.div>
-  );
+const ICON_BY_NAME: Record<string, (props: IconProps) => JSX.Element> = {
+  Home: HomeIcon,
+  About: UserIcon,
+  Skill: ZapIcon,
+  Project: FolderIcon,
+  Experience: BriefcaseIcon,
+  Certification: AwardIcon,
 };
 
-export const NavBody = ({ children, className, visible }: NavBodyProps) => {
+export function Navbar({ children }: { children: ReactNode }) {
   return (
-    <motion.div
-      animate={{
-        backdropFilter: visible ? "blur(10px)" : "none",
-        boxShadow: visible
-          ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
-          : "none",
-        width: visible ? "40%" : "100%",
-        y: visible ? 20 : 0,
-      }}
-      transition={{
-        type: "spring",
-        stiffness: 200,
-        damping: 50,
-      }}
-      style={{
-        minWidth: "800px",
-      }}
-      className={cn(
-        "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full bg-transparent px-4 py-2 lg:flex dark:bg-transparent",
-        visible && "bg-white/80 dark:bg-neutral-950/80",
-        className,
-      )}
-    >
-      {children}
-    </motion.div>
+    <header className="sticky top-0 z-50 w-full">
+      <div className="mx-auto w-full max-w-6xl px-4 md:px-8">{children}</div>
+    </header>
   );
-};
+}
 
-export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
-  const [hovered, setHovered] = useState<number | null>(null);
-
+export function NavBody({ children }: { children: ReactNode }) {
   return (
-    <motion.div
-      onMouseLeave={() => setHovered(null)}
-      className={cn(
-        "absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium text-zinc-600 transition duration-200 hover:text-zinc-800 lg:flex lg:space-x-2",
-        className,
-      )}
-    >
-      {items.map((item, idx) => (
-        <a
-          onMouseEnter={() => setHovered(idx)}
-          onClick={(e) => {
-            e.preventDefault();
-            const target = document.querySelector(item.link);
-            if (target) {
-              target.scrollIntoView({ behavior: "smooth" });
-            }
-            onItemClick?.();
-          }}
-          className="relative px-4 py-2 text-neutral-600 dark:text-neutral-300"
-          key={`link-${idx}`}
-          href={item.link}
-        >
-          {hovered === idx && (
-            <motion.div
-              layoutId="hovered"
-              className="absolute inset-0 h-full w-full rounded-full bg-gray-100 dark:bg-neutral-800"
-            />
-          )}
-          <span className="relative z-20">{item.name}</span>
-        </a>
-      ))}
-    </motion.div>
-  );
-};
-
-export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
-  return (
-    <motion.div
-      animate={{
-        backdropFilter: visible ? "blur(10px)" : "none",
-        boxShadow: visible
-          ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
-          : "none",
-        width: visible ? "90%" : "100%",
-        paddingRight: visible ? "12px" : "0px",
-        paddingLeft: visible ? "12px" : "0px",
-        borderRadius: visible ? "4px" : "2rem",
-        y: visible ? 20 : 0,
-      }}
-      transition={{
-        type: "spring",
-        stiffness: 200,
-        damping: 50,
-      }}
-      className={cn(
-        "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between bg-transparent px-0 py-2 lg:hidden",
-        visible && "bg-white/80 dark:bg-neutral-950/80",
-        className,
-      )}
-    >
-      {children}
-    </motion.div>
-  );
-};
-
-export const MobileNavHeader = ({
-  children,
-  className,
-}: MobileNavHeaderProps) => {
-  return (
-    <div
-      className={cn(
-        "flex w-full flex-row items-center justify-between",
-        className,
-      )}
-    >
+    <div className="hidden md:flex items-center justify-between gap-6 rounded-full border border-white/10 bg-black/80 px-4 py-2 mt-4 backdrop-blur-md">
       {children}
     </div>
   );
-};
+}
 
-export const MobileNavMenu = ({
-  children,
-  className,
-  isOpen,
-  onClose,
-}: MobileNavMenuProps) => {
+export function NavItems({ items }: { items: NavItem[] }) {
+  const [active, setActive] = useScrollSpy(items);
+  return <IconPill items={items} active={active} onSelect={setActive} size={17} circle={36} gap="gap-0.5" />;
+}
+
+export function NavbarLogo() {
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className={cn(
-            "absolute inset-x-0 top-16 z-50 flex w-full flex-col items-start justify-start gap-4 rounded-lg bg-white px-4 py-8 shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] dark:bg-neutral-950",
-            className,
-          )}
-        >
-          {children}
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <a href="#home" className="text-sm font-semibold tracking-tight text-white">
+      Nyno<span className="text-neutral-500">.dev</span>
+    </a>
   );
-};
+}
 
-export const MobileNavToggle = ({
+export function NavbarButton({
+  children,
+  variant = "primary",
+  className = "",
+  onClick,
+}: {
+  children: ReactNode;
+  variant?: "primary" | "secondary";
+  className?: string;
+  onClick?: () => void;
+}) {
+  const base =
+    variant === "primary"
+      ? "bg-white text-black hover:bg-neutral-200"
+      : "bg-transparent text-white border border-white/20 hover:border-white/40";
+  return (
+    <button
+      onClick={onClick}
+      className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${base} ${className}`}
+    >
+      {children}
+    </button>
+  );
+}
+
+export function MobileNav({ children }: { children: ReactNode }) {
+  return <div className="md:hidden">{children}</div>;
+}
+
+export function MobileNavHeader({ children }: { children: ReactNode }) {
+  return (
+    <div className="flex items-center justify-between rounded-full border border-white/10 bg-black/80 px-4 py-3 mt-4 backdrop-blur-md">
+      {children}
+    </div>
+  );
+}
+
+export function MobileNavToggle({
   isOpen,
   onClick,
 }: {
   isOpen: boolean;
   onClick: () => void;
-}) => {
-  return isOpen ? (
-    <IconX className="text-black dark:text-white" onClick={onClick} />
-  ) : (
-    <IconMenu2 className="text-black dark:text-white" onClick={onClick} />
-  );
-};
-
-export const NavbarLogo = () => {
+}) {
   return (
-    <a
-      href="#"
-      className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black"
+    <button
+      onClick={onClick}
+      aria-label={isOpen ? "Close menu" : "Open menu"}
+      className="flex h-9 w-9 items-center justify-center rounded-full text-white"
     >
-      <img
-        src="https://assets.aceternity.com/logo-dark.png"
-        alt="logo"
-        width={30}
-        height={30}
-      />
-      <span className="font-medium text-black dark:text-white">Nashat</span>
-    </a>
+      {isOpen ? <XIcon size={20} /> : <MenuIcon size={20} />}
+    </button>
   );
-};
+}
 
-export const NavbarButton = ({
-  href='https://github.com/Nyno1',
-  as: Tag = "a",
+export function MobileNavMenu({
+  isOpen,
+  onClose,
   children,
-  className,
-  variant = "primary",
-  ...props
 }: {
-  href?: string;
-  as?: React.ElementType;
-  children: React.ReactNode;
-  className?: string;
-  variant?: "primary" | "secondary" | "dark" | "gradient";
-} & (
-  | React.ComponentPropsWithoutRef<"a">
-  | React.ComponentPropsWithoutRef<"button">
-)) => {
-  const baseStyles =
-    "px-4 py-2 rounded-md bg-white button bg-white text-black text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center";
+  isOpen: boolean;
+  onClose: () => void;
+  children: ReactNode;
+}) {
+  const items = flattenNavLinks(children);
+  const [active, setActive] = useScrollSpy(items);
 
-  const variantStyles = {
-    primary:
-      "shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]",
-    secondary: "bg-transparent shadow-none dark:text-white",
-    dark: "bg-black text-white shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]",
-    gradient:
-      "bg-gradient-to-b from-blue-500 to-blue-700 text-white shadow-[0px_2px_0px_0px_rgba(255,255,255,0.3)_inset]",
-  };
+  if (items.length === 0) return null;
 
   return (
-    <Tag
-      href={href || undefined}
-      className={cn(baseStyles, variantStyles[variant], className)}
-      {...props}
+    <nav
+      aria-label="Primary"
+      data-open={isOpen}
+      className="fixed inset-x-0 bottom-6 z-50 flex justify-center px-5"
     >
-      {children}
-    </Tag>
+      <IconPill
+        items={items}
+        active={active}
+        onSelect={(link) => {
+          setActive(link);
+          onClose();
+        }}
+        size={22}
+        circle={56}
+        gap="gap-1"
+        className="w-full max-w-md justify-between"
+      />
+    </nav>
   );
-};
+}
+
+function useScrollSpy(items: NavItem[]): [string, (link: string) => void] {
+  const [active, setActive] = useState<string>(items[0]?.link ?? "");
+
+  useEffect(() => {
+    const sections = items
+      .map((item) => document.getElementById(item.link.replace("#", "")))
+      .filter((el): el is HTMLElement => el !== null);
+
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActive(`#${visible.target.id}`);
+      },
+      { rootMargin: "-40% 0px -40% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return [active, setActive];
+}
+
+function IconPill({
+  items,
+  active,
+  onSelect,
+  size,
+  circle,
+  gap = "gap-1",
+  className = "",
+}: {
+  items: NavItem[];
+  active: string;
+  onSelect: (link: string) => void;
+  size: number;
+  circle: number;
+  gap?: string;
+  className?: string;
+}) {
+  return (
+    <ul
+      className={`flex items-center ${gap} rounded-full bg-black px-3 py-2 shadow-lg ${className}`}
+    >
+      {items.map((item) => {
+        const Icon = ICON_BY_NAME[item.name] ?? HomeIcon;
+        const isActive = item.link === active;
+        return (
+          <li key={item.link}>
+            <a
+              href={item.link}
+              aria-current={isActive ? "page" : undefined}
+              aria-label={item.name}
+              onClick={() => onSelect(item.link)}
+              style={{ height: circle, width: circle }}
+              className={`flex items-center justify-center rounded-full transition-colors duration-200 ${
+                isActive ? "bg-white" : "bg-transparent"
+              }`}
+            >
+              <Icon
+                size={size}
+                strokeWidth={1.75}
+                className={isActive ? "text-black" : "text-white"}
+                aria-hidden="true"
+              />
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+function flattenNavLinks(children: ReactNode): NavItem[] {
+  const result: NavItem[] = [];
+  const nodes = Array.isArray(children) ? children : [children];
+
+  for (const node of nodes) {
+    if (
+      node &&
+      typeof node === "object" &&
+      "props" in node &&
+      typeof (node as { props?: { href?: string } }).props?.href === "string"
+    ) {
+      const props = (node as { props: { href: string; children?: ReactNode } }).props;
+      const label = extractText(props.children) ?? props.href.replace("#", "");
+      result.push({ name: label, link: props.href });
+    }
+  }
+  return result;
+}
+
+function extractText(node: ReactNode): string | null {
+  if (typeof node === "string") return node;
+  if (Array.isArray(node)) {
+    for (const child of node) {
+      const text = extractText(child);
+      if (text) return text;
+    }
+    return null;
+  }
+  if (node && typeof node === "object" && "props" in node) {
+    return extractText((node as { props?: { children?: ReactNode } }).props?.children ?? null);
+  }
+  return null;
+}

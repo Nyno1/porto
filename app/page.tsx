@@ -13,10 +13,19 @@ import {
 import { useState } from "react";
 import Programing from "./programing";
 import Project from "./project";
-import Sertfication from "./sertifikat";
+import Certification from "./certification";
 import About from "./about";
 import { ShootingStarsAndStarsBackgroundDemo } from "./home";
 import Footer from "./footer";
+import Experience from "./experience";
+import CommentSection from "@/components/CommentSection";
+import UserMenu from "@/components/UserMenu";
+
+const Divider = () => (
+  <div className="w-full max-w-5xl mx-auto px-4 md:px-20">
+    <div className="border-t border-[#1A1A1A]" />
+  </div>
+);
 
 export default function NavbarDemo() {
   const navItems = [
@@ -24,7 +33,8 @@ export default function NavbarDemo() {
     { name: "About", link: "#about" },
     { name: "Skill", link: "#skill" },
     { name: "Project", link: "#project" },
-    { name: "Sertfikat", link: "#sertfication" },
+    { name: "Experience", link: "#experience" },
+    { name: "Certification", link: "#certification" },
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -37,6 +47,7 @@ export default function NavbarDemo() {
           <NavbarLogo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
+            <UserMenu />
             <NavbarButton
               variant="primary"
               onClick={() => window.open("https://github.com/Nyno1", "_blank")}
@@ -70,6 +81,9 @@ export default function NavbarDemo() {
                 <span className="block">{item.name}</span>
               </a>
             ))}
+            <div className="pt-2 border-t border-[#1A1A1A]">
+              <UserMenu />
+            </div>
             <div className="flex w-full flex-col gap-4">
               <NavbarButton
                 onClick={() => setIsMobileMenuOpen(false)}
@@ -87,19 +101,39 @@ export default function NavbarDemo() {
       <div id="home">
         <ShootingStarsAndStarsBackgroundDemo />
       </div>
-      <div id="about">
+
+      <Divider />
+
+      <div id="about" className="mt-8">
         <About />
       </div>
-      <div id="skill">
+
+      <Divider />
+
+      <div id="skill" className="mt-8">
         <Programing />
       </div>
-      <div id="project">
+
+      <Divider />
+
+      <div id="project" className="mt-8">
         <Project />
       </div>
-      <div id="sertfication">
-        <Sertfication />
+
+      <Divider />
+
+      <div id="experience" className="mt-8">
+        <Experience />
       </div>
+
+      <Divider />
+
+      <div id="certification" className="mt-8">
+        <Certification />
+      </div>
+
       <Footer />
+      <CommentSection postSlug="portfolio" />
     </div>
   );
 }

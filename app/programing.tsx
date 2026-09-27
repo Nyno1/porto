@@ -17,6 +17,7 @@ const categories = [
       { name: "Laravel", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" },
       { name: "PHP", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" },
       { name: "Node.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+      { name: "Express", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
     ],
   },
   {
@@ -25,12 +26,14 @@ const categories = [
       { name: "MySQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
       { name: "PostgreSQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
       { name: "Prisma", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg" },
+      { name: "MongoDB", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
     ],
   },
   {
     label: "Tools & DevOps",
     techs: [
       { name: "Git", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+      { name: "Docker", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
       { name: "Figma", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" },
       { name: "JavaScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
     ],
@@ -130,7 +133,7 @@ export default function TechCards() {
       <div className="flex flex-col gap-8 w-full max-w-5xl">
         {visibleCategories.map((cat, catIdx) => (
           <div
-            key={cat.label}
+            key={`${activeCategory ?? "all"}-${cat.label}`}
             className="rounded-2xl bg-[#111111] border border-[#2A2A2A] p-6 hover:border-[#3A3A3A] transition-colors duration-200 anim-cardPop"
             style={{ animationDelay: `${catIdx * 60}ms` }}
           >
@@ -140,7 +143,7 @@ export default function TechCards() {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {cat.techs.map((tech, techIdx) => (
                 <div
-                  key={tech.name}
+                  key={`${activeCategory ?? "all"}-${tech.name}`}
                   onMouseEnter={() => setHoveredTech(tech.name)}
                   onMouseLeave={() => setHoveredTech(null)}
                   className="flex flex-col items-center gap-3 p-4 rounded-xl bg-[#0A0A0A] border border-[#2A2A2A] hover:border-blue-500/40 hover:bg-[#0F1520] transition-all duration-200 cursor-default group anim-cardPop"

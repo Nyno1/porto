@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import SmoothScroll from "./smooth-scroll";
+import Providers from "./providers";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -42,8 +44,10 @@ export default function RootLayout({
     <html lang="id">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#0A0A0A]`}
+        style={{ overscrollBehavior: "none" }}
       >
-        {children}
+        <SmoothScroll />
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

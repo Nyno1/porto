@@ -24,14 +24,16 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="bg-[#111111] border-t border-[#1A1A1A] text-white py-12">
-      <div className="max-w-5xl mx-auto px-4 md:px-20">
-        <div className="flex flex-col md:flex-row justify-between gap-8 mb-10">
+    <footer className="w-full bg-[#111111] border-t border-[#1A1A1A] text-white py-12">
+        <div className="w-full px-4 md:px-20">
+          <div className="flex flex-col md:flex-row justify-between gap-8 mb-10">
           {/* Brand */}
-          <div className="max-w-xs">
+          <div className="max-w-md">
             <h2 className="text-xl font-bold text-white mb-2">Nashat Akram</h2>
             <p className="text-[#888888] text-sm leading-relaxed">
-              Backend Developer Student di SMK Informatika Pesat. Membangun web apps yang cepat dan skalabel.
+              Backend Developer dengan minat mendalam pada system design, API development, dan database optimization. Berpengalaman membangun aplikasi web yang tidak hanya fungsional,
+              tetapi juga scalable dan mudah di-maintain dalam jangka panjang. Berbasis Software Engineering,
+              aktif mengembangkan portofolio melalui kolaborasi proyek dan eksplorasi teknologi terbaru di ekosistem web development.
             </p>
             <div className="flex items-center gap-2 mt-4">
               <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
