@@ -46,15 +46,6 @@ export function ShootingStarsAndStarsBackgroundDemo() {
         }}
       />
 
-      {/* Available badge */}
-      <div className="relative z-10 flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-[#2A2A2A] bg-[#111111] text-sm text-gray-400">
-        <span className="relative flex h-2 w-2">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
-        </span>
-        Available for freelance &amp; full-time
-      </div>
-
       {/* Main headline */}
       <div className="relative z-10 text-center px-4">
         <h1 className="text-5xl md:text-7xl font-extrabold text-white leading-tight tracking-tight mb-4">
@@ -69,7 +60,7 @@ export function ShootingStarsAndStarsBackgroundDemo() {
         </div>
         <p className="text-base md:text-lg text-[#888888] max-w-xl mx-auto mb-10 leading-relaxed">
           Building fast, scalable web apps with modern tech stacks. Currently a
-          student at SMK Informatika Pesat — RPL.
+          student at University Of Gunadarma
         </p>
 
         {/* CTA buttons */}
@@ -79,14 +70,6 @@ export function ShootingStarsAndStarsBackgroundDemo() {
             className="px-6 py-3 bg-white text-black font-semibold rounded-md hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all duration-300 text-sm"
           >
             See My Work
-          </a>
-          <a
-            href="/cv.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-3 bg-transparent border border-[#2A2A2A] text-white font-semibold rounded-md hover:border-white transition-all duration-300 text-sm"
-          >
-            Download CV
           </a>
         </div>
 
